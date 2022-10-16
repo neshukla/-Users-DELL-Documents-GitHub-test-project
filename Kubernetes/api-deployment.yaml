@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deploy
+  labels:
+    type: restapi
+spec:
+  selector: 
+    matchLabels:
+      app: api
+  replicas: 3
+  template:
+    metadata:
+      name: api-tmpl
+      labels:
+        app: api
+    spec:
+      containers:
+        - name: api
+          image: test-project-api
+          ports:
+            - containerPort: 5000

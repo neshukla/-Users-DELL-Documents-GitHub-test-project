@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sys-stats-deploy
+  labels:
+    type: restapi
+spec:
+  selector: 
+    matchLabels:
+      app: sys-stats
+  replicas: 3
+  template:
+    metadata:
+      name: sys-stats-tmpl
+      labels:
+        app: sys-stats
+    spec:
+      containers:
+        - name: sys-stats
+          image: test-project-sys-stats
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: Never
